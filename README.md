@@ -3,9 +3,9 @@
 Bot Telegram tao QR VietQR va chia bill theo so nguoi.
 
 ## Tinh nang
-- Tao QR chuyen khoan tu STK va so tien
+- Tao QR chuyen khoan theo ngan hang va so tien
 - Chia bill theo so nguoi, tinh moi nguoi bao nhieu
-- Hien thi noi dung trong tin nhan (QR khong truyen noi dung)
+- Ho tro nhap so tien dang 50k = 50000
 
 ## Yeu cau
 - Python 3.11+
@@ -15,6 +15,8 @@ Bot Telegram tao QR VietQR va chia bill theo so nguoi.
 Tao file `.env`:
 ```
 TELEGRAM_BOT_TOKEN=YOUR_TOKEN
+DEFAULT_BANK=tpb
+DEFAULT_STK=00996553702
 ```
 
 Cap nhat ngan hang trong `data.txt`:
@@ -46,12 +48,31 @@ docker compose up -d --build
 ```
 
 ## Lenh su dung
-- `/b <bank> <stk> <sotien> [noidung]`
-- `/s <bank> <stk> <sotien> <songuoi> [noidung]`
-- `/help`
+Chi co mot lenh `/c`.
 
-Vi du:
+### Dang day du (tu chon ngan hang)
 ```
-/b tpb 0123456789 50000 tien an
-/s tpb 0123456789 210000 4 landcoffee
+/c ma_ngan_hang stk so_tien so_nguoi noi_dung
+```
+Neu so nguoi = 1, co the bo qua:
+```
+/c ma_ngan_hang stk so_tien noi_dung
+```
+
+### Dang mac dinh cho Hiep
+Mac dinh lay tu `.env`: `DEFAULT_BANK` va `DEFAULT_STK` (neu khong co thi dung tpb / 00996553702).
+```
+/c so_tien so_nguoi noi_dung
+```
+Neu so nguoi = 1, co the bo qua:
+```
+/c so_tien noi_dung
+```
+
+### Vi du
+```
+/c tpb 0123456789 210000 4 landcoffee
+/c tpb 0123456789 50k tien an
+/c 50k 3 tien an
+/c 50k
 ```
