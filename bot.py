@@ -107,7 +107,9 @@ async def cmd_c(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             "/c [so_tien] [so_nguoi] [noi_dung]\n"
             "Mac dinh: \n"
             "- khong can nhap so_nguoi neu so nguoi = 1\n"
-            "- khong can nhap noi dung chuyen khoan\n"
+            "Neu muon QR co noi dung mac dinh cua ngan hang:\n" 
+            "vi du: Nguyen Van A chuyen tien\n"
+            "thi khong can nhap noi dung chuyen khoan\n"
         )
         return
 
@@ -205,16 +207,18 @@ async def cmd_help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         "/c chia bill\n"
         "============\n"
         "Dung day du: \n"
-        "/c [ma_ngan_hang] [stk] [so_tien] [so_nguoi] [noi_dung](optional)\n"
+        "/c [ma_ngan_hang] [stk] [so_tien] [so_nguoi] [noi_dung](khong bat buoc)\n"
         "Hoac: \n"
-        "/c [ma_ngan_hang] [stk] [so_tien] [noi_dung](optional) (mac dinh so nguoi = 1)\n"
+        "/c [ma_ngan_hang] [stk] [so_tien] [noi_dung](khong bat buoc) (mac dinh so nguoi = 1)\n"
         "============\n"
         "Mac dinh chuyen khoan cho em Hiep:\n"
-        "/c [so_tien] [so_nguoi] [noi_dung](optional)\n"
+        "/c [so_tien] [so_nguoi] [noi_dung](khong bat buoc)\n"
         "============\n"
         "Luu y: \n"
         "- Khong can nhap so nguoi neu so nguoi = 1\n"
-        "- Khong can nhap noi dung chuyen khoan\n"
+        "Neu muon QR co noi dung mac dinh cua ngan hang:\n" 
+        "vi du: Nguyen Van A chuyen tien\n"
+        "thi khong can nhap noi dung chuyen khoan\n"
         
     )
 
