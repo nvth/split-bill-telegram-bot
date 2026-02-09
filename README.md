@@ -16,7 +16,7 @@ Tao file `.env`:
 ```
 TELEGRAM_BOT_TOKEN=YOUR_TOKEN
 DEFAULT_BANK=tpb
-DEFAULT_STK=00996553702
+DEFAULT_STK=xxxxx
 ```
 
 Cap nhat ngan hang trong `data.txt`:
