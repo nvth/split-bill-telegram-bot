@@ -37,9 +37,11 @@ def load_banks() -> dict:
     return banks
 
 
-def build_qr_url(bin_code: str, stk: str, amount: str) -> str:
+def build_qr_url(bin_code: str, stk: str, amount: str, add_info: str | None = None) -> str:
     qr_base = f"https://img.vietqr.io/image/{bin_code}-{stk}-compact2.png"
     query = {"amount": amount}
+    if add_info:
+        query["addInfo"] = add_info
     return f"{qr_base}?{urlencode(query, quote_via=quote)}"
 
 
@@ -158,7 +160,13 @@ async def cmd_c(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     content_text = content if content else ""
 
     amount_each = amount_total // people
-    qr_url = build_qr_url(bin_code, stk, str(amount_each))
+    qr_add_info = normalize_qr_content(content_text)
+    qr_url = build_qr_url(
+        bin_code,
+        stk,
+        str(amount_each),
+        qr_add_info if qr_add_info else None,
+    )
 
     content_display = escape_markdown(content_text if content_text else "(khong co)")
     message = (
@@ -171,10 +179,14 @@ async def cmd_c(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         f"Noi dung: {content_display}"
     )
 
-    await update.message.reply_text(message, parse_mode="Markdown")
     try:
-        await update.message.reply_photo(qr_url)
+        await update.message.reply_photo(
+            qr_url,
+            caption=message,
+            parse_mode="Markdown",
+        )
     except Exception:
+        await update.message.reply_text(message, parse_mode="Markdown")
         await update.message.reply_text(
             "Khong gui duoc anh QR. Vui long thu lai."
         )
